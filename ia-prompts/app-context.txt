@@ -1,0 +1,165 @@
+
+
+La siguiente descripción es necesaria para que puedas entender el contexto del proyecto y ayudarme a resolver
+cualquier duda, problema o solución que pueda surgir. Te pido que, al responder a mis preguntas, tomes en cuenta
+este contexto para que las respuestas sean más precisas y correctas.
+
+El proyecto es una aplicación desarrollada en Spring Boot con arquitectura de microservicios, que se enfoca en validar la autenticidad de las cuentas de influencers y su contenido en las redes sociales. Utiliza Docker para mejorar la portabilidad y distribución de los servicios. Cada módulo de la aplicación utiliza diferentes bibliotecas y tecnologías para realizar su tarea específica, y se comunica con los otros módulos a través de APIs RESTful. En resumen, el proyecto ayuda a las empresas y marcas a tomar decisiones informadas en cuanto a sus estrategias de marketing y publicidad en las redes sociales.
+
+Arbol de archivos y directorios del proyecto:
+
+
+.idea
+.mvn
+service1
+    - src
+        - main
+            - java
+                - com
+                    - mics
+                        - service1
+                            - Controller.java
+                            - Main.java
+            - resources
+                - application.properties
+    - target
+        - classes
+        - generated-sources
+        - maven-archiver
+        - maven-status
+        - service1-0.0.1-SANPSHOT.jar
+        - service1-0.0.1-SANPSHOT.jar.original
+    - Dockerfile
+    - pom.xml
+service2
+    - src
+        - main
+            - java
+                - com
+                    - mics
+                        - service2
+                            - Controller.java
+                            - Main.java
+            - resources
+                - application.properties
+    - target
+        - classes
+        - generated-sources
+        - maven-archiver
+        - maven-status
+        - service1-0.0.2-SANPSHOT.jar
+        - service1-0.0.2-SANPSHOT.jar.original
+    - Dockerfile
+    - pom.xml
+.gitignore
+docker-compose.yml
+HELP.md
+mvnw
+mvnw.cmd
+pom.xml
+
+
+Archivos relevantes:
+
+
+pom.xml de ruta raiz :
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+        https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.example</groupId>
+	<artifactId>microservices</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>service1</module>
+		<module>service2</module>
+	</modules>
+
+	<properties>
+		<java.version>17</java.version>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
+	</properties>
+
+</project>
+
+docker-compose.yml de ruta raiz :
+
+FROM openjdk:17
+WORKDIR /
+
+COPY ./target/service1-0.0.1-SNAPSHOT.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java","-jar","app.jar"]
+
+
+Dockerfile de service1 :
+
+FROM openjdk:17
+WORKDIR /
+
+COPY ./target/service1-0.0.1-SNAPSHOT.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java","-jar","app.jar"]
+
+
+pom.xml de service 1:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <groupId>com.example</groupId>
+        <artifactId>microservices</artifactId>
+        <version>1.0.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example</groupId>
+    <artifactId>service1</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.6.3</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.mics.service1.Main</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
+</project>
+
+Estas listo o tienes alguna duda para continuar con las preguntas y dudas que tengo?
