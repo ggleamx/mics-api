@@ -1,3 +1,5 @@
+ docker-compose build --no-cache
+
 # Proyecto de Microservicios con Spring Boot
 Este es un proyecto de ejemplo que utiliza la arquitectura de microservicios con Spring Boot y Docker. Consiste en dos microservicios: service1 y service2.
 

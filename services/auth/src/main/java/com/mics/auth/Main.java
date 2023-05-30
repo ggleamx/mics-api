@@ -1,5 +1,4 @@
-package com.mics.service1;
-
+package com.mics.auth;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
